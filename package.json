@@ -1,5 +1,6 @@
 {
   "name": "farleyta-backbone-starter",
+  "repository": "https://github.com/farleyta/backbone-starter",
   "version": "0.1.0",
   "devDependencies": {
     "grunt": "^0.4.4",
