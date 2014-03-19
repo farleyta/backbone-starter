@@ -5,9 +5,16 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     mkdir: {
-      app: {
+      setup: {
         options: {
-          create: ['js/app', 'js/app/collections', 'js/app/models', 'js/app/routers', 'js/app/views']
+          create: [
+            'img',
+            'js/app', 
+            'js/app/collections', 
+            'js/app/models', 
+            'js/app/routers', 
+            'js/app/views'
+          ]
         }
       }
     },
@@ -89,6 +96,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-compass');
 
   grunt.registerTask('default', ['watch']);
-  grunt.registerTask('setup', ['concat:vendor', 'uglify:vendor', 'mkdir:app']);
+  grunt.registerTask('setup', ['concat:vendor', 'uglify:vendor', 'mkdir:setup']);
 
 };
