@@ -13,5 +13,6 @@ A generic boilerplate for [backbone.js](http://backbonejs.org/) projects.
     1. Concatenates all .js files from the `js/vendor` directory (jQuery, Backbone, Underscore, etc)
     2. Minifies them into `js/vendor.min.js`
     3. Creates the proper directory structure (empty) for your app inside the `js/app/` directory
-5. Run `grunt watch` (or just `grunt`) to start watching your project for changes
+    4. Creates an empty `img` directory for your images
+5. Run `grunt watch` (or just `grunt`) to start watching your project for changes (utilizes [LiveReload](http://livereload.com/))
 6. Do your thang...
