@@ -9,7 +9,6 @@ module.exports = function(grunt) {
         options: {
           create: [
             'img',
-            'js/app', 
             'js/app/collections', 
             'js/app/models', 
             'js/app/routers', 
@@ -21,8 +20,8 @@ module.exports = function(grunt) {
 
     concat: {
       app: {
-        src: ['js/app/models/*.js', 'js/app/collections/*.js', 'js/app/views/*.js', 'js/app/routers/*.js'],
-        dest: 'js/app/app.js'
+        src: ['js/app/models/*.js', 'js/app/collections/*.js', 'js/app/views/*.js', 'js/app/routers/*.js', 'js/app/app-init.js'],
+        dest: 'js/app/source/app.js'
       },
       vendor: {
         src: ['js/vendor/jquery*.js', 'js/vendor/underscore*.js', 'js/vendor/backbone*.js', 'js/vendor/*.js', '!js/vendor/all.js'],
