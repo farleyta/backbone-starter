@@ -5,14 +5,23 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     concat: {
+      app: {
+        src: ['js/app/models/*.js', 'js/app/collections/*.js', 'js/app/views/*.js', 'js/app/routers/*.js'],
+        dest: 'js/app/app.js'
+      },
       vendor: {
         src: ['js/vendor/jquery*.js', 'js/vendor/underscore*.js', 'js/vendor/backbone*.js', 'js/vendor/*.js', '!js/vendor/all.js'],
-        dest: 'js/vendor/all.js',
+        dest: 'js/vendor/all.js'
       },
     },
     uglify: {
       options: {
         mangle: false
+      },
+      app: {
+        files: {
+          'js/app.min.js': ['js/app/app.js']
+        }
       },
       vendor: {
         files: {
@@ -21,13 +30,14 @@ module.exports = function(grunt) {
       }
     },
     jshint: {
-      all: ['Gruntfile.js', 'js/*.js', '!js/vendor/*']
+      // no need to lint app.js – just a concat of app subdir js files
+      all: ['Gruntfile.js', 'js/**/*.js', '!js/*.min.js', '!js/vendor/*', '!js/app/app.js']
     },
     watch: {
       js: {
         files: ['<%= jshint.all %>'], // exclude the vendor files from linting,
-        tasks: ['jshint']
-      },
+        tasks: ['jshint', 'concat:app', 'uglify:app']
+      }
     }
   });
 
