@@ -4,6 +4,14 @@ module.exports = function(grunt) {
     
     pkg: grunt.file.readJSON('package.json'),
 
+    mkdir: {
+      app: {
+        options: {
+          create: ['js/app', 'js/app/collections', 'js/app/models', 'js/app/routers', 'js/app/views']
+        }
+      }
+    },
+
     concat: {
       app: {
         src: ['js/app/models/*.js', 'js/app/collections/*.js', 'js/app/views/*.js', 'js/app/routers/*.js'],
@@ -14,6 +22,7 @@ module.exports = function(grunt) {
         dest: 'js/vendor/all.js'
       },
     },
+
     uglify: {
       options: {
         mangle: false
@@ -29,10 +38,12 @@ module.exports = function(grunt) {
         }
       }
     },
+
     jshint: {
       // no need to lint app.js – just a concat of app subdir js files
       all: ['Gruntfile.js', 'js/**/*.js', '!js/*.min.js', '!js/vendor/*', '!js/app/app.js']
     },
+
     watch: {
       js: {
         files: ['<%= jshint.all %>'], // exclude the vendor files from linting,
@@ -41,12 +52,13 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-mkdir');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
   grunt.registerTask('default', ['watch']);
-  grunt.registerTask('setup', ['concat:vendor', 'uglify:vendor']);
+  grunt.registerTask('setup', ['concat:vendor', 'uglify:vendor', 'mkdir:app']);
 
 };
