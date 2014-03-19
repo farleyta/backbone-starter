@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     concat: {
-      dist: {
+      vendor: {
         src: ['js/vendor/jquery*.js', 'js/vendor/underscore*.js', 'js/vendor/backbone*.js', 'js/vendor/*.js', '!js/vendor/all.js'],
         dest: 'js/vendor/all.js',
       },
@@ -14,7 +14,7 @@ module.exports = function(grunt) {
       options: {
         mangle: false
       },
-      dist: {
+      vendor: {
         files: {
           'js/vendor.min.js': ['js/vendor/all.js']
         }
@@ -37,6 +37,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
   grunt.registerTask('default', ['watch']);
-  grunt.registerTask('setup', ['concat', 'uglify']);
+  grunt.registerTask('setup', ['concat:vendor', 'uglify:vendor']);
 
 };
